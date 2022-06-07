@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const bookSchema = new mongoose.Schema( {
-    bookName: String, 
+    bookName: {
+    type:String,
+    require:true,
+    unique:true
+} ,
     authorName: String, 
     tags: [String],
     
