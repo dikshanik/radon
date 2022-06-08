@@ -7,10 +7,42 @@ const createBook= async function (req, res) {
     res.send({msg: savedData})
 }
 
-const getBooksData= async function (req, res) {
-    let allBooks= await BookModel.find(  { authorName : "SK" , isPublished: true }  )
-    res.send({msg: allBooks})
+const bookList= async function (req, res) {
+    let list= await BookModel.find( ).select({bookName:1 ,
+    authorName:1,_id:0})
+    res.send({msg: list})
 }
 
+
+
+const getBooksInYear= async function (req, res) {
+    let bookYear = req.params.year;
+    let saveData= await BookModel.find({year: bookYear} )
+    res.send({msg: saveData})
+}
+
+const getParticularBooks= async function (req, res) {
+    let fetch = req.body
+    let saveData= await BookModel.find(fetch)
+    res.send({msg: saveData})
+}
+
+const getXINRBooks= async function (req, res) {
+    let priceData= await BookModel.find({"price.IndianPrice":{$in:["Rs 100","Rs 200","Rs 500"]}});
+    res.send({msg: priceData})
+
+}
+const getRandomBooks = async function (req, res) {
+    let stockData= await BookModel.find({$or:[{stockAvailable:true},{$gt:500}]} );
+    res.send({msg: stockData})
+}
+
+
+
+
 module.exports.createBook= createBook
-module.exports.getBooksData= getBooksData
+module.exports.bookList= bookList
+module.exports.getBooksInYear= getBooksInYear
+module.exports.getXINRBooks= getXINRBooks
+module.exports.getParticularBooks= getParticularBooks
+module.exports.getRandomBooks = getRandomBooks
