@@ -1,3 +1,9 @@
+// const express = require('express');
+// const bodyParser = require('body-parser');
+// const route = require('./routes/route.js');
+// const { default: mongoose } = require('mongoose');
+// const app = express();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
@@ -8,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzotr.mongodb.net/Pritesh8769811-DB?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://diksha:diksha@cluster0.juhgc.mongodb.net/diksha-db?retryWrites=true&w=majority", {
     useNewUrlParser: true
 })
 .then( () => console.log("MongoDb is connected"))
