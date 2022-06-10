@@ -1,4 +1,5 @@
 const express = require('express');
+const moment = require("moment");
 const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
@@ -16,7 +17,7 @@ mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzot
 
 app.use (
     function (req, res, next) {
-        console.log ("inside GLOBAL MW");
+        console.log (moment().format("YYYY/MM/DD h:mm:ss a")+", "+req.socket.remoteAddress+ ", "+req.path);
         next();
   }
   );
